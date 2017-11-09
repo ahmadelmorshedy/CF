@@ -63,3 +63,6 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+config.use_transactional_fixtures = false
+
