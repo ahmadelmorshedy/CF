@@ -62,6 +62,11 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.use_transactional_fixtures = false
+
+  # include weather Macros
+  config.when_first_matching_example_defined(:weather) do
+    config.include WeatherMacros
+  end
 end
 
 Shoulda::Matchers.configure do |config|
