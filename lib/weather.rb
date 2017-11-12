@@ -21,11 +21,11 @@ module Weather
       if validate_coordinates?(options[:lon], options[:lat])
         req += "lat=#{options[:lat]}&lon=#{options[:lon]}"
       else
-        return "Invalid Call - invalid parameters"
+        return "#{I18n.t('weather_invalid_call')} - #{I18n.t('weather_invalid_parameters')}"
       end
     else
       # Invalid Call
-      return "Invalid Call - use {city: CITY_NAME} or {lon:X,lat:Y} as parameters"
+      return "#{I18n.t('weather_invalid_call')} - #{I18n.t('weather_wrong_parameters')}"
     end
     # Append metric unit options adn APPID
     req += "&units=metric&APPID=#{WEATHERMAP_APPID}"
@@ -35,7 +35,7 @@ module Weather
     if weather_response.code == 200
       return weather_response.parsed_response["main"]["temp"]
     else
-      return "Invalid Call - #{weather_response.parsed_response['message']}"
+      return "#{I18n.t('weather_invalid_call')} - #{weather_response.parsed_response['message']}"
     end
   end
 end
