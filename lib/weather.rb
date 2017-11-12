@@ -10,22 +10,24 @@ module Weather
 
   # gets Current Weather from http://openweathermap.org for given city using 
   # city name or long/lat
+  # 
+  # retrun [Hash] hash of weather info
   def getWeather(options)
     # initialize request
     req = "http://api.openweathermap.org/data/2.5/weather?"
     # append data
-    if options[:city].present?
+    if options && options[:city]
       req += "q=#{options[:city]}"
-    elsif options[:lon] && options[:lat]
+    elsif options && options[:lon] && options[:lat]
       # validate values
       if validate_coordinates?(options[:lon], options[:lat])
         req += "lat=#{options[:lat]}&lon=#{options[:lon]}"
       else
-        return "#{I18n.t('weather_invalid_call')} - #{I18n.t('weather_invalid_parameters')}"
+        return {error_message: "#{I18n.t('weather_invalid_call')} - #{I18n.t('weather_invalid_parameters')}"}
       end
     else
       # Invalid Call
-      return "#{I18n.t('weather_invalid_call')} - #{I18n.t('weather_wrong_parameters')}"
+      return {error_message: "#{I18n.t('weather_invalid_call')} - #{I18n.t('weather_wrong_parameters')}"}
     end
     # Append metric unit options adn APPID
     req += "&units=metric&APPID=#{WEATHERMAP_APPID}"
@@ -33,9 +35,26 @@ module Weather
     weather_response = HTTParty.get req
     # handle response
     if weather_response.code == 200
-      return weather_response.parsed_response["main"]["temp"]
+      weather = {}
+      parsed_resp = weather_response.parsed_response
+      weather[:city] = parsed_resp["name"]
+      weather[:desc] = parsed_resp["weather"][0]["description"].capitalize # weather status
+      # city coordinates
+      weather[:lon] = parsed_resp["coord"]["lon"]
+      weather[:lat] = parsed_resp["coord"]["lat"]
+      # weather
+      weather[:temp] = parsed_resp["main"]["temp"]
+      weather[:temp_min] = parsed_resp["main"]["temp_min"]
+      weather[:temp_high] = parsed_resp["main"]["temp_max"]
+      weather[:pressure] = parsed_resp["main"]["pressure"]
+      weather[:humidity] = parsed_resp["main"]["humidity"]
+      # wind
+      weather[:wind_speed] = parsed_resp["wind"]["speed"]
+      weather[:wind_degree] = parsed_resp["wind"]["deg"]
+
+      return weather
     else
-      return "#{I18n.t('weather_invalid_call')} - #{weather_response.parsed_response['message']}"
+      return {error_message: "#{I18n.t('weather_invalid_call')} - #{weather_response.parsed_response['message']}"}
     end
   end
 end
