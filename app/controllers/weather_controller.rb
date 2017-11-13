@@ -21,7 +21,9 @@ class WeatherController < ApplicationController
     end
 
     unless options.empty?
-      weather = getWeather(options)
+      weather = Rails.cache.fetch("#{options.to_s}", expires_in: CACHE_MINUTES.minutes) do
+        getWeather(options)
+      end
 
       unless weather[:error_message]
         @city = weather[:city] # city name
