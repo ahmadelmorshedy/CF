@@ -19,7 +19,9 @@
     </div>
   </div>
 
-  <div class="actions">
-    <%= submit_tag %>
+  <div class="top-margin pull-right right-margin">
+    <div class="actions">
+      <%= submit_tag(I18n.t('weather_form.submit'), class: "btn btn-submit btn-primary") %>
+    </div>
   </div>
 <% end %>

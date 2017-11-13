@@ -1,2 +1,8 @@
-<%= label_tag I18n.t('city') %>
-<%= select(nil, "city", @cities, include_blank: I18n.t('weather_form.select_city')) %>
+<div class="col-md-4">
+  <%= label_tag I18n.t('city') %>
+</div>
+<div class="col-md-4">
+  <div class="pull-left">
+    <%= select(nil, "city", @cities, include_blank: I18n.t('weather_form.select_city')) %>
+  </div>
+</div>

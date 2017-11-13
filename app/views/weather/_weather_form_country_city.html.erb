@@ -1,3 +1,15 @@
-<%= label_tag I18n.t('country') %>
-<%= country_select(nil, "country", include_blank: I18n.t('weather_form.select_country')) %>
-<div id='city_select'></div>
+<div class="text-center">
+  <div class="row top-margin">
+    <div class="col-md-4">
+      <%= label_tag I18n.t('country') %>
+    </div>
+    <div class="col-md-4">
+      <div class="pull-left">
+        <%= country_select(nil, "country", include_blank: I18n.t('weather_form.select_country')) %>
+      </div>
+    </div>
+  </div>
+  <div class="row top-margin">
+    <div id='city_select'></div>
+  </div>
+</div>
