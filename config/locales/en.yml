@@ -44,6 +44,7 @@ en:
     city_name: City name
     longitude: longitude
     latitude: Latitude
+    user_location: Use my current location
     submit: Get weather
   weather_data:
     coordinates: coordinates (lon, lat)

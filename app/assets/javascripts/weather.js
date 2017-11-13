@@ -1,3 +1,14 @@
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(updateCoordinates);
+    }
+}
+
+function updateCoordinates(position) {
+    $("#lon").val(position.coords.longitude);
+    $("#lat").val(position.coords.latitude);
+}
+
 function getCity(){
   $.ajax({
     type: 'POST',
@@ -11,6 +22,14 @@ function getCity(){
   });
 };
 
+function userLocationChanged(){
+  if ($("#user_location:checked").length > 0) {
+    getLocation();
+  }
+}
+
 $(document).on('ready page:load', function () {
   $(document).off("change", "#country").on("change", "#country", getCity);
+
+  $(document).off("change", "#user_location").on("change", "#user_location", userLocationChanged);
 });
