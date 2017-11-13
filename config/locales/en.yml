@@ -30,7 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  main_title: Weather App
   weather_invalid_call: Invalid call
   weather_invalid_parameters: invalid parameters
   weather_wrong_parameters: "use {city: CITY_NAME} or {lon:X,lat:Y} as parameters"
