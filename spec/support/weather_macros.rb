@@ -2,25 +2,25 @@ module WeatherMacros
   # internal methods
 
   def select_country_city(country, city)
-    click "country_city-tab"
+    click_on I18n.t('weather_form.country_city_select')
     select country, from: "country"
     select city, from: "city"
   end
 
   def enter_city_name(city_name)
-    click "city_name-tab"
+    click_on I18n.t('weather_form.city_name')
     fill_in "city_name", with: city_name
   end
 
   def user_location()
-    click "location-tab"
-    check "my_location"
+    click_on I18n.t('location')
+    check "user_location"
   end
 
   def custom_location(lon, lat)
-    click "location-tab"
-    fill_in "longitude", with: lon
-    fill_in "latitude", with: lat
+    click_on I18n.t('location')
+    fill_in "lon", with: lon
+    fill_in "lat", with: lat
   end
 
   ##############################################################################
@@ -28,7 +28,7 @@ module WeatherMacros
   # Main method - used by spec/features/weather_spec.rb tests
   def getWeatherData(options)
     visit root_path
-    expect(page).to have_text 'SOME TITLE HERE'
+    expect(page).to have_text I18n.t('main_title')
     # fill in form-data
     if options[:country] && options[:city]
       select_country_city(options[:country], options[:city])
@@ -37,17 +37,17 @@ module WeatherMacros
     elsif options[:user_location]
       user_location()
     elsif options[:lon] && options[:lat]
-      custom_location(lon, lat)
+      custom_location(options[:lon], options[:lat])
     end
     # submit
-    click_button 'SUBMIT BUTTON'
+    click_button I18n.t('weather_form.submit')
     # Expect
     unless options[:false_data]
-      expect(page).to have_text 'TEMPERATURE_TEXT'
-      expect(page).to have_text 'WIND_TEXT'
+      expect(page).to have_text I18n.t('weather_data.temperature')
+      expect(page).to have_text I18n.t('weather_data.wind_speed')
     else
       expect(page).to have_text I18n.t('weather_invalid_call')
-      expect(page).not_to have_text 'TEMPERATURE_TEXT'
+      expect(page).not_to have_text I18n.t('weather_data.temperature')
     end
   end
 end
