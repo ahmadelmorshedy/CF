@@ -1,5 +1,7 @@
 <% if flash[:error].present? %>
-  <div role="alert" class="alert alert-danger alert-dismissible fade in">
-     <p><%= flash[:error] %></p>
+  <div class="text-center margin-all">
+    <div role="alert" class="alert alert-danger alert-dismissible fade in">
+      <p><%= flash[:error] %></p>
+    </div>
   </div>
 <% end %>
