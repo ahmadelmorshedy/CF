@@ -1,0 +1,25 @@
+<%= form_tag(get_weather_path, method: 'get') do %>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#country_city_tab" aria-controls="country_city_tab" role="tab" data-toggle="tab"><%= I18n.t('weather_form.country_city_select') %></a></li>
+    <li role="presentation"><a href="#city_name_tab" aria-controls="city_name_tab" role="tab" data-toggle="tab"><%= I18n.t('weather_form.city_name') %></a></li>
+    <li role="presentation"><a href="#location_tab" aria-controls="location_tab" role="tab" data-toggle="tab"><%= I18n.t('location') %></a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="country_city_tab">
+      <%= render "weather_form_country_city" %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="city_name_tab">
+      <%= render "weather_form_city_name" %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="location_tab">
+      <%= render "weather_form_location" %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<% end %>

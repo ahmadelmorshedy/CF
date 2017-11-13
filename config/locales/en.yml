@@ -34,3 +34,13 @@ en:
   weather_invalid_call: Invalid call
   weather_invalid_parameters: invalid parameters
   weather_wrong_parameters: "use {city: CITY_NAME} or {lon:X,lat:Y} as parameters"
+  country: Country
+  city: City
+  location: Location
+  weather_form:
+    country_city_select: "Select country/city"
+    select_country: Select country
+    select_city: Select city
+    city_name: City name
+    longitude: longitude
+    latitude: Latitude

@@ -1,0 +1,4 @@
+<%= label_tag I18n.t('weather_form.longitude') %>
+<%= number_field_tag(:lon, min: -180, max: 180) %>
+<%= label_tag I18n.t('weather_form.latitude') %>
+<%= number_field_tag(:lat, min: -90, max: 90) %>
