@@ -1,11 +1,59 @@
-<p><%= @city %></p>
-<p><%= @desc %></p>
-<p><%= @lon %></p>
-<p><%= @lat %></p>
-<p><%= @temp %></p>
-<p><%= @temp_min %></p>
-<p><%= @temp_high %></p>
-<p><%= @pressure %></p>
-<p><%= @humidity %></p>
-<p><%= @wind_speed %></p>
-<p><%= @wind_degree %></p>
+<div class="default-border">
+  <div class="margin-all-small">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <h3><%= @city %></h3>
+      </div>
+      <div class="col-md-4">
+        <h3><%= @desc %></h3>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <%= render 'weather_data_separator' %>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-4 bold-font">
+        <%= I18n.t('weather_data.coordinates') %>
+      </div>
+      <div class="col-md-4">
+        <%= "#{@lon}, #{@lat}" %>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <%= render 'weather_data_separator' %>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-2 bold-font">
+        <%= I18n.t('weather_data.temperature') %>
+      </div>
+      <div class="col-md-2">
+        <%= @temp %>
+      </div>
+      <div class="col-md-2">
+        <%= @temp_min %>(<%= I18n.t('weather_data.min') %>)
+      </div>
+      <div class="col-md-2">
+        <%= @temp_high %>(<%= I18n.t('weather_data.max') %>)
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <%= render 'weather_data_separator' %>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-2">
+        <%= @pressure %>(<%= I18n.t('weather_data.pressure') %>)
+      </div>
+      <div class="col-md-2">
+        <%= @humidity %>(<%= I18n.t('weather_data.humidity') %>)
+      </div>
+      <div class="col-md-2">
+        <%= @wind_speed %>(<%= I18n.t('weather_data.wind_speed') %>)
+      </div>
+      <div class="col-md-2">
+        <%= @wind_degree %>(<%= I18n.t('weather_data.wind_degree') %>)
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</div>

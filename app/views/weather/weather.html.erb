@@ -1,6 +1,10 @@
-<div class="margin-all">
-  <!-- Weather Data -->
-  <%= render "weather_data" %>
+<% if @temp %>
+  <div class="side-margin">
+    <!-- Weather Data -->
+    <%= render "weather_data" %>
+  </div>
+<% end %>
+<div class="margin-all-small">
   <!-- weather forms -->
   <%= render "weather_form" %>
 </div>

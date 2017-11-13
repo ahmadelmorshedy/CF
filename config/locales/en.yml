@@ -45,3 +45,12 @@ en:
     longitude: longitude
     latitude: Latitude
     submit: Get weather
+  weather_data:
+    coordinates: coordinates (lon, lat)
+    temperature: temperature
+    min: min
+    max: max
+    pressure: pressure
+    humidity: humidity
+    wind_speed: wind speed
+    wind_degree: wind degree
