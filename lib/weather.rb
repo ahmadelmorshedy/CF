@@ -5,7 +5,7 @@ module Weather
   # @param lat [Float] latitude
   # @return [Boolean] true if valid coordinates, false otherwise
   def validate_coordinates?(lon, lat)
-    (lon.abs <= 180 && lat.abs <= 90)? true : false
+    (lon.to_f.abs <= 180 && lat.to_f.abs <= 90)? true : false
   end
 
   # gets Current Weather from http://openweathermap.org for given city using 
